@@ -263,3 +263,23 @@ Verified criteria:
 - **Map Visualizer**: Currently supports full GPS coordinate logging, address resolution, and reverse coordinates; interactive OpenStreetMap or Google Maps tile preview requires an external API key or Leaflet bundle.
 - **SMS Gateway**: Simulated status notifications; production integration would hook into Twilio/Gupshup for automated citizen SMS alerts.
 - **Binary Cloud Storage**: File attachments are currently encoded and verified within payload quotas (5MB limit); production would stream directly to S3 or Cloudinary.
+
+---
+
+## 11. Deploying to Vercel
+
+The repository is configured for 1-click deployment on Vercel using `vercel.json` and `@vercel/node` serverless functions for Express:
+
+1. **Import Project on Vercel**:
+   - Go to [vercel.com/new](https://vercel.com/new).
+   - Sign in with GitHub and import `shruthi65343-pixel/online-complaint-tracking`.
+
+2. **Configure Cloud Environment Variables**:
+   In the Vercel project configuration, add:
+   - `MONGODB_URI`: Your MongoDB Atlas connection string (e.g. `mongodb+srv://<user>:<password>@cluster0.xxx.mongodb.net/resolvetrack?retryWrites=true&w=majority`)
+   - `JWT_SECRET`: Any strong random secret (e.g. `resolvetrack_super_secure_jwt_secret_key_2026_xyz`)
+   - `NODE_ENV`: `production`
+
+3. **Deploy**:
+   - Click **Deploy**. Vercel will build the React Vite frontend, mount the Express API under `/api`, and host the full-stack system on your production `.vercel.app` domain.
+
